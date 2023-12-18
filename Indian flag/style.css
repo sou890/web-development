@@ -1,0 +1,31 @@
+.main{
+    width: 700px;
+    height: 500px;
+    background-color: black;
+    margin:auto;
+    border: 1px solid black;
+
+}
+.top{
+    height:calc(500px / 3);
+    background-color: orange;
+    border-bottom:1px solid black ;
+}
+.center{
+    height: calc(500px / 3);
+    background-color:white;
+    border-bottom:1px solid black;
+    display: flex;
+    justify-content: center;
+
+}
+.bottom{
+    height: calc(500px / 3)     ;
+    background-color: green;
+}
+.chakra{
+    height:calc(500px /3);
+    width:calc(500px / 3);
+    background-color : blue;   
+    border-radius: 100%;
+} 

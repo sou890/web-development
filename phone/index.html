@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>phone structure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main" >
+        <div class="notch">
+            <div class="camera"></div>
+            <div class="wifi">
+                <span id="connection-type">Wifi</span>
+                <span id="download-speed" style="font-size: 12px;"> - Mbps</span>
+            </div>
+        </div>
+        <div class="screen" >
+            <video src="" style="display: none;" id="vid"></video>
+            <div class="icons" id="screen">
+                <div ><button id="but"><img src="camera.png"height='50'width="35" alt=""></button></div>
+                <div><a href="https://www.google.com/"><img src="google.png" height="50" width="50" alt=""></a></div>
+                <div><a href="https://music.youtube.com"><img src="Youtube-Music-Logo.png" width="50 " height="50"></a></div>
+                <div>4</div>
+            </div>
+          
+        </div>
+        <div class="buttons">
+            <div class="recent-button"></div>
+            <div ><button onclick="document.location='http://127.0.0.1:5500/phone/index.html'"></button></div>
+            <div class="back-button" >
+                <button id="back"></button>
+            </div>  
+        </div>
+        
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',() => {
+            let but = document.getElementById('but');
+            let video = document.getElementById('vid');
+            let screen = document.getElementById('screen'); 
+            let backbtn = document.getElementById('back'); 
+            let mediaDevices = navigator.mediaDevices;
+            var webscreen;
+            vid.muted = true;
+            but.addEventListener("click",() => {
+                video.style.display = "block";
+                screen.style.display = "none";
+                mediaDevices.getUserMedia({
+                    video:true,
+                    audio:true,
+                }).then((stream) => {
+                    video.srcObject = stream;
+                    webscreen = stream;
+                    video.addEventListener("loadedmetadata",() => {
+                        video.play();
+                    });
+                }).catch(alert);
+            });
+
+            backbtn.addEventListener("click",() => {
+             video.style.display = 'none';
+             screen.style.display = 'block';
+            });
+        });
+
+        const connectionType = document.getElementById('connection-type');
+        const downloadSpeed = document.getElementById('download-speed');
+        const uploadSpeed = document.getElementById('upload-speed');
+        if('connection' in navigator){
+            const connection = navigator.connection;
+            console.log(connection);
+            const connectionTypeString = connection.effectiveType;
+            connectionType.textContent = connectionTypeString;
+
+            const downloadSpeedMbps = connection.downlink;
+            downloadSpeed.textContent = `Download: ${downloadSpeedMbps} Mbps`;
+
+            // const uploadSpeedMbps = (connection.uplink / 1e6).toFixed(2);
+            // uploadSpeed.textContent = `Upload: ${uploadSpeedMbps} Mbps`;
+        }
+    </script>
+</body>
+</html>

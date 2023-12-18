@@ -1,0 +1,14 @@
+.main{
+    width: 700px;
+    height: 500px;
+    background-color: grey;
+    margin: auto;
+}
+.top{
+    height:250px ;
+    background-color: red;
+}
+.bottom{
+    height:250px ;
+    background-color:yellow;
+}
